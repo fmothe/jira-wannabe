@@ -3,6 +3,7 @@ import { uiReducer ,UIContext} from '.';
 
 export interface UIState {
     sidemenuOpen: boolean;
+    isAddingEntry: boolean;
 }
 
 
@@ -12,6 +13,7 @@ interface Props{
 
 const UI_INITIAL_STATE: UIState = {
     sidemenuOpen: false,
+    isAddingEntry: false
 };
 
 export const UIProvider: React.FC<Props> = ({children}) => {
@@ -25,11 +27,16 @@ export const UIProvider: React.FC<Props> = ({children}) => {
     const closeSideMenu = () => {
         dispatch({type: 'UI- close sidebar'});
     }
+
+    const setIsAddingEntry = (isAdding: boolean) => {
+        dispatch({type: 'UI- isAddingEntry', payload:isAdding})
+    }
     
     return (<UIContext.Provider value={{
         ...state,
         openSideMenu,
-        closeSideMenu
+        closeSideMenu,
+        setIsAddingEntry
     }}>
         {children}
     </UIContext.Provider>)
