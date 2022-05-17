@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { DragEvent, FC, useContext, useState } from "react";
 import {
     Card,
     CardActionArea,
@@ -13,6 +13,7 @@ import { Entry } from "../../interfaces";
 import ExpandMore from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLess from "@mui/icons-material/ExpandLessOutlined";
 import { Box } from "@mui/system";
+import { UIContext } from "../../context/ui/UIContext";
 
 interface Props {
     entry: Entry;
@@ -20,12 +21,26 @@ interface Props {
 
 export const EntryCard: FC<Props> = ({ entry }) => {
     const [expand, setexpand] = useState(false);
+    const { startDragging, endDragging } = useContext(UIContext);
 
+    const onDragStart = (event: DragEvent) => {
+        event.dataTransfer.setData("text/plain", entry._id);
+        startDragging();
+    };
+
+    const onDragEnd = () => {
+        endDragging();
+    };
     return (
-        <Card sx={{ marginBottom: 1 }}>
+        <Card
+            sx={{ marginBottom: 1 }}
+            draggable
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+        >
             <CardActionArea>
                 <Box display="flex" justifyContent="flex-end">
-                  <Typography variant='body2'>{entry.createdAt}</Typography>
+                    <Typography variant="body2">{entry.createdAt}</Typography>
                     {/* <CardHeader subheader={entry.createdAt} /> */}
                 </Box>
                 <CardContent>
