@@ -24,7 +24,7 @@ export const EntryCard: FC<Props> = ({ entry }) => {
     const { startDragging, endDragging } = useContext(UIContext);
 
     const onDragStart = (event: DragEvent) => {
-        event.dataTransfer.setData("text/plain", entry._id);
+        event.dataTransfer.setData("text", entry._id);
         startDragging();
     };
 
@@ -40,7 +40,7 @@ export const EntryCard: FC<Props> = ({ entry }) => {
         >
             <CardActionArea>
                 <Box display="flex" justifyContent="flex-end">
-                    <Typography variant="body2">{entry.createdAt}</Typography>
+                    {/* <Typography variant="body2">{entry.createdAt}</Typography> */}
                     {/* <CardHeader subheader={entry.createdAt} /> */}
                 </Box>
                 <CardContent>

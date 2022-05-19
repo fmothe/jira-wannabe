@@ -18,21 +18,23 @@ export const EntryList: FC<Props> = ({ status }) => {
     );
     const allowDrop = (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault();
+        event.stopPropagation();
     };
 
-    const onDrop = (event: DragEvent<HTMLDivElement>) => {
-        const id = event.dataTransfer.getData("text/plain");
-        console.log(id)
+    const onDropEntry = (event: DragEvent<HTMLDivElement>) => {
+        const id = event.dataTransfer.getData("text");
+        
         const entry = entries.find((e) => e._id === id)!;
         entry.status = status;
         updateEntry(entry);
+        event.preventDefault();
         endDragging();
     };
     return (
         <div
-            onDrop={onDrop}
+            onDrop={onDropEntry}
             onDragOver={allowDrop}
-            className={isDragging ? styles.dragging : ""}
+            className={isDragging ? styles.dragging : ''}
         >
             <Paper
                 sx={{
