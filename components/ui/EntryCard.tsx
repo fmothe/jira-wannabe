@@ -14,6 +14,7 @@ import ExpandMore from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLess from "@mui/icons-material/ExpandLessOutlined";
 import { Box } from "@mui/system";
 import { UIContext } from "../../context/ui/UIContext";
+import { Button } from "@mui/material";
 
 interface Props {
     entry: Entry;
@@ -58,11 +59,15 @@ export const EntryCard: FC<Props> = ({ entry }) => {
                 >
                     {expand ? (
                         <>
-                            <ExpandLess onClick={() => setexpand(false)} />
+                            <Button sx={{ color: "white" }}>
+                                <ExpandLess onClick={() => setexpand(false)} />
+                            </Button>
                         </>
                     ) : (
                         <>
-                            <ExpandMore onClick={() => setexpand(true)} />
+                            <Button sx={{ color: "white" }}>
+                                <ExpandMore onClick={() => setexpand(true)} />
+                            </Button>
                         </>
                     )}
                 </CardActions>
