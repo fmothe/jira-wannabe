@@ -54,11 +54,11 @@ export const NewEntry = () => {
                         placeholder="New Entry"
                         autoFocus
                         multiline
-                        label="New Entry"
+                        label="Body"
                         helperText={
                             inputValue.length <= 0 &&
                             touched &&
-                            "Please enter a task"
+                            "Please enter a body"
                         }
                         error={inputValue.length <= 0 && touched}
                         value={inputValue}
