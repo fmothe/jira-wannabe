@@ -40,44 +40,11 @@ export const EntryCard: FC<Props> = ({ entry }) => {
             onDragEnd={onDragEnd}
         >
             <CardActionArea>
-                <Box display="flex" justifyContent="flex-end">
-                    {/* <Typography variant="body2">{entry.createdAt}</Typography> */}
-                    {/* <CardHeader subheader={entry.createdAt} /> */}
-                </Box>
                 <CardContent>
-                    <Typography sx={{ whiteSpace: "pre-line" }} variant="h5">
-                        {entry.title}
+                    <Typography sx={{ whiteSpace: "pre-line" }}>
+                        {entry.description}
                     </Typography>
                 </CardContent>
-                <CardActions
-                    sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        paddingRight: 2,
-                    }}
-                    disableSpacing
-                >
-                    {expand ? (
-                        <>
-                            <Button sx={{ color: "white" }}>
-                                <ExpandLess onClick={() => setexpand(false)} />
-                            </Button>
-                        </>
-                    ) : (
-                        <>
-                            <Button sx={{ color: "white" }}>
-                                <ExpandMore onClick={() => setexpand(true)} />
-                            </Button>
-                        </>
-                    )}
-                </CardActions>
-                <Collapse in={expand} timeout="auto" unmountOnExit>
-                    <CardContent>
-                        <Typography sx={{ whiteSpace: "pre-line" }} paragraph>
-                            {entry.description}
-                        </Typography>
-                    </CardContent>
-                </Collapse>
             </CardActionArea>
         </Card>
     );
