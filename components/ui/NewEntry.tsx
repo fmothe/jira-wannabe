@@ -8,20 +8,14 @@ export const NewEntry = () => {
     const { addNewEntry } = useContext(EntriesContext);
     const { setIsAddingEntry, isAddingEntry } = useContext(UIContext);
     const [inputValue, setInputValue] = useState("");
-    const [titleValue, setTitleValue] = useState("");
     const [touched, setTouched] = useState(false);
 
     const onTextChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
-    const onTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitleValue(event.target.value);
-    };
 
     const onSave = () => {
-        if (titleValue.length === 0) return;
-
-        addNewEntry(inputValue, titleValue);
+        addNewEntry(inputValue);
         setIsAddingEntry(false);
         setTouched(false);
         setInputValue("");
@@ -34,31 +28,14 @@ export const NewEntry = () => {
                     <TextField
                         fullWidth
                         sx={{ marginTop: 2, marginBottom: 1 }}
-                        placeholder="Title"
+                        placeholder="New Task"
                         autoFocus
                         multiline
-                        label="New Entry"
-                        helperText={
-                            titleValue.length <= 0 &&
-                            touched &&
-                            "Please enter a task"
-                        }
-                        error={titleValue.length <= 0 && touched}
-                        value={titleValue}
-                        onChange={onTitleChange}
-                        onBlur={() => setTouched(true)}
-                    />
-                    <TextField
-                        fullWidth
-                        sx={{ marginTop: 2, marginBottom: 1 }}
-                        placeholder="New Entry"
-                        autoFocus
-                        multiline
-                        label="Body"
+                        label="Task"
                         helperText={
                             inputValue.length <= 0 &&
                             touched &&
-                            "Please enter a body"
+                            "Please enter a task"
                         }
                         error={inputValue.length <= 0 && touched}
                         value={inputValue}

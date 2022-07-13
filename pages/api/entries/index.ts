@@ -47,3 +47,5 @@ const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         res.status(500).json({ message: "Error creating entry" });
     }
 };
+
+
