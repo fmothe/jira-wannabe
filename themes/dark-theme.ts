@@ -21,6 +21,17 @@ export const darkTheme = createTheme({
                       backgroundColor:'#4a148c',
                   }
               }
+          },
+          MuiButton:{
+                styleOverrides:{
+                    root:{
+                        backgroundColor:'#4a148c',
+                        "&:hover":{
+                            backgroundColor:'#9862da',
+                        }
+                    }
+
+                }
           }
       }
   });
