@@ -15,6 +15,7 @@ import ExpandLess from "@mui/icons-material/ExpandLessOutlined";
 import { Box } from "@mui/system";
 import { UIContext } from "../../context/ui/UIContext";
 import { Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 interface Props {
     entry: Entry;
@@ -23,6 +24,7 @@ interface Props {
 export const EntryCard: FC<Props> = ({ entry }) => {
     const [expand, setexpand] = useState(false);
     const { startDragging, endDragging } = useContext(UIContext);
+    const router = useRouter()
 
     const onDragStart = (event: DragEvent) => {
         event.dataTransfer.setData("text", entry._id);
@@ -32,8 +34,12 @@ export const EntryCard: FC<Props> = ({ entry }) => {
     const onDragEnd = () => {
         endDragging();
     };
+    const handleClick = () =>{
+        router.push('/entries/'+entry._id)
+    }
     return (
         <Card
+        onClick={handleClick}
             sx={{ marginBottom: 1 }}
             draggable
             onDragStart={onDragStart}
