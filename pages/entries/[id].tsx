@@ -24,6 +24,7 @@ import mongoose, { isValidObjectId } from "mongoose";
 import { dbEntries } from "../../database";
 import { Entry } from "../../interfaces/entry";
 import { EntriesContext } from '../../context/entries/EntriesContext';
+import { dateFunctions } from "../../utils";
 
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];
 
@@ -64,7 +65,7 @@ const EntryPage: FC<Props> = ({ entry }) => {
                 <Grid item xs={12} sm={8} md={6}>
                     <Card sx={{ marginBotom: 2 }}>
                         <CardHeader title={`Entry: `} 
-                        subheader={`Created ${entry.createdAt} minutes ago`}/>
+                        subheader={`Created ${dateFunctions.getFormatDistanceToNow(entry.createdAt)} ago`}/>
 
                         <CardContent>
                             <TextField

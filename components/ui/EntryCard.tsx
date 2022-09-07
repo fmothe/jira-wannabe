@@ -16,6 +16,8 @@ import { Box } from "@mui/system";
 import { UIContext } from "../../context/ui/UIContext";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
+import { dateFunctions } from '../../utils';
+
 
 interface Props {
     entry: Entry;
@@ -51,6 +53,9 @@ export const EntryCard: FC<Props> = ({ entry }) => {
                         {entry.description}
                     </Typography>
                 </CardContent>
+                <CardActions sx={{display:'flex', justifyContent:'end', paddingRight:2}}>
+                    <Typography variant='body2'>{dateFunctions.getFormatDistanceToNow(entry.createdAt)} ago</Typography>
+                </CardActions>
             </CardActionArea>
         </Card>
     );
